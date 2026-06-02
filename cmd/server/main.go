@@ -3,14 +3,15 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/romulo/go-finance-api/internal/config"
+	"github.com/romulo/go-finance-api/internal/routes"
 )
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request){
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("Api funcionando!"))
-	})
 
-	fmt.Println("Servidor iniciado na porta 8080")
-	http.ListenAndServe(":8080", nil)
+	routes.RegisterRoutes()
+
+	fmt.Printf("Servidor iniciado na porta %s\n", config.ServerPort)
+	http.ListenAndServe(config.ServerPort, nil)
 }
