@@ -1,19 +1,15 @@
 package services
 
-import "github.com/romulo/go-finance-api/internal/models"
+import (
+	"github.com/romulo/go-finance-api/internal/models"
+	"github.com/romulo/go-finance-api/internal/repositories"
+)
 
-var users  []models.User
-var nextID = 1
 
 func CreateUser(user models.User) models.User {
-	user.ID = nextID
-	nextID++
-
-	users = append(users, user)
-
-	return user
+	return  repositories.SaveUser(user)
 }
 
 func ListUsers() []models.User {
-	return users
+	return repositories.ListUsers()
 }
