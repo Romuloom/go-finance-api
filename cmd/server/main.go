@@ -5,10 +5,12 @@ import (
 	"net/http"
 
 	"github.com/romulo/go-finance-api/internal/config"
+	"github.com/romulo/go-finance-api/internal/database"
 	"github.com/romulo/go-finance-api/internal/routes"
 )
 
 func main() {
+	database.Connect()
 
 	routes.RegisterRoutes()
 

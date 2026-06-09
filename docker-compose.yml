@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: docker.io/library/postgres:16
+    container_name: go-finance-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: gofinance
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
