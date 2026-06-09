@@ -26,7 +26,9 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	createdUser, err := services.CreateUser(user)
 	if err != nil {
 		w.WriteHeader(http.StatusBadRequest)
-		w.Write([]byte(err.Error()))
+		json.NewEncoder(w).Encode(map[string] string {
+			"error": err.Error(),
+		})
 		return
 	}
 
