@@ -23,7 +23,12 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 
 
 
-	createdUser := services.CreateUser(user)
+	createdUser, err := services.CreateUser(user)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		w.Write([]byte(err.Error()))
+		return
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusCreated)

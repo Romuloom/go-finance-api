@@ -13,5 +13,7 @@ func main() {
 	routes.RegisterRoutes()
 
 	fmt.Printf("Servidor iniciado na porta %s\n", config.ServerPort)
-	http.ListenAndServe(config.ServerPort, nil)
+	if err := http.ListenAndServe(config.ServerPort, nil); err != nil {
+		fmt.Printf("Erro ao iniciar servidor: %v\n", err)
+	}
 }
